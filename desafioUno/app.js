@@ -6,8 +6,15 @@ class ProductManager{
     static id=0
 
     addProduct(title, description, price, thumbmail, code, stock){
+        for (let i = 0; i < this.products.length; i++) {
+            if (this.products[i].code === code){
+                console.log(`The code ${code} is taken`);
+            }
+        }
+
         ProductManager.id++
         this.products.push({title, description, price, thumbmail, code, stock, id:ProductManager.id});
+        
     }
 
     getProducts(){
@@ -32,7 +39,11 @@ class ProductManager{
 
  console.log(productos.getProducts());
 
+ productos.addProduct('Producto 4','Descripcion de producto 4',4000,'https://www.productos.com/producto4.png','c3c3c3c3c3',30)
+
+ 
+
  console.log(productos.getProductById(1));
  console.log(productos.getProductById(2));
  console.log(productos.getProductById(3));
- console.log(productos.getProductById(4));
+ console.log(productos.getProductById(10));
