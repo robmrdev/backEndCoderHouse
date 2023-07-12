@@ -57,20 +57,43 @@ class ProductManager{
 
 const product = new ProductManager;
 
-product.addProduct('Producto 1','Descripcion de producto 1',1500,'https://www.productos.com/producto1.png','a1a1a1a1a1',30)
-product.addProduct('Producto 2','Descripcion de producto 2',3000,'https://www.productos.com/producto2.png','b2b2b2b2b2',30)
-product.addProduct('Producto 3','Descripcion de producto 3',4000,'https://www.productos.com/producto3.png','c3c3c3c3c3',30)
 
-product.getProducts()
 
-product.deleteProduct(2)
+//PASO 1, AGREGAR PRODUCTOS
 
-product.updateProduct({
-    title: 'Producto 2 MODIFICADO',
-    description: 'Descripcion de producto 2 MODIFICADO',
-    price: 3000,
-    thumbmail: 'https://www.productos.com/producto2.png',
-    code: 'b2b2b2b2b2',
-    stock: 30,
-    id: 2
-})
+// product.addProduct('Producto 1','Descripcion de producto 1',1500,'https://www.productos.com/producto1.png','a1a1a1a1a1',30)
+// product.addProduct('Producto 2','Descripcion de producto 2',3000,'https://www.productos.com/producto2.png','b2b2b2b2b2',30)
+// product.addProduct('Producto 3','Descripcion de producto 3',4000,'https://www.productos.com/producto3.png','c3c3c3c3c3',30)
+
+
+
+
+//PASO 2, Obtener los productos
+
+// product.getProducts()
+
+
+
+
+// PASO 3, Borrar productos
+
+// product.deleteProduct(2)
+// product.getProducts()
+
+
+
+
+
+//PASO 4, ACTUALIZAR DATOS DE UN PRODUCTO
+
+// product.updateProduct({
+//     title: 'Producto 1 MOFIDICADO',
+//     description: 'Descripcion de producto 1 MODIFICADO',
+//     price: 1500,
+//     thumbmail: 'https://www.productos.com/producto1.png',
+//     code: 'a1a1a1a1a1',
+//     stock: 30,
+//     id: 1
+// })
+
+// product.getProducts()
