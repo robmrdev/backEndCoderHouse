@@ -9,12 +9,16 @@ class ProductManager{
         for (let i = 0; i < this.products.length; i++) {
             if (this.products[i].code === code){
                 console.log(`The code ${code} is taken`);
+                return
             }
+        }
+        if (!title || !description || !price || !thumbmail || !code || !stock) {
+            console.log("You must complete all Fields");
+            return;
         }
 
         ProductManager.id++
         this.products.push({title, description, price, thumbmail, code, stock, id:ProductManager.id});
-        
     }
 
     getProducts(){
@@ -33,7 +37,7 @@ class ProductManager{
 
  console.log(productos.getProducts());
 
- productos.addProduct('Producto 1','Descripcion de producto 1',1500,'https://www.productos.com/producto1.png','a1a1a1a1a1',30)
+ productos.addProduct('Producto 1','Descripcion de producto 2',1500,'https://www.productos.com/producto1.png','a1a1a1a1a1',30)
  productos.addProduct('Producto 2','Descripcion de producto 2',3000,'https://www.productos.com/producto2.png','b2b2b2b2b2',30)
  productos.addProduct('Producto 3','Descripcion de producto 3',4000,'https://www.productos.com/producto3.png','c3c3c3c3c3',30)
 
@@ -42,6 +46,7 @@ class ProductManager{
  productos.addProduct('Producto 4','Descripcion de producto 4',4000,'https://www.productos.com/producto4.png','c3c3c3c3c3',30)
 
  
+ console.log(productos.getProducts());
 
  console.log(productos.getProductById(1));
  console.log(productos.getProductById(2));
