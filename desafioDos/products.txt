@@ -1,0 +1,1 @@
+[{"title":"Producto 1 MOFIDICADO","description":"Descripcion de producto 1 MODIFICADO","price":1500,"thumbmail":"https://www.productos.com/producto1.png","code":"a1a1a1a1a1","stock":30,"id":1},{"title":"Producto 3","description":"Descripcion de producto 3","price":4000,"thumbmail":"https://www.productos.com/producto3.png","code":"c3c3c3c3c3","stock":30,"id":3}]
