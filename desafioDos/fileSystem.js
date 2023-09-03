@@ -11,6 +11,15 @@ class ProductManager {
 
     addProduct = async (title, description, price, thumbmail, code, stock) => {
         try {
+            if (!title || !description || !price || !thumbmail || !code || !stock) {
+                console.log('Todos los campos son requeridos para actualizar un producto.')
+                return;
+            }
+            const existingProduct = this.products.find(product => product.code === code);
+            if (existingProduct) {
+                console.log(`El producto con código ${code} ya existe.`);
+                return;
+            }
             ProductManager.id++
             let newProduct = { title, description, price, thumbmail, code, stock, id: ProductManager.id }
             this.products = await this.getProducts()
@@ -23,7 +32,7 @@ class ProductManager {
         }
     }
 
-    
+
     readProducts = async () => {
         let respuesta = await (fs.readFile(this.path, "utf-8"))
         return JSON.parse(respuesta)
