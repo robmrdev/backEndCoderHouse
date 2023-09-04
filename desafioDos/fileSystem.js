@@ -11,18 +11,18 @@ class ProductManager {
 
     addProduct = async (title, description, price, thumbmail, code, stock) => {
         try {
+            this.products = await this.getProducts()
             if (!title || !description || !price || !thumbmail || !code || !stock) {
                 console.log('Todos los campos son requeridos para actualizar un producto.')
                 return;
             }
-            const existingProduct = this.products.find(product => product.code === code);
+            const existingProduct = await this.products.find(product => product.code === code);
             if (existingProduct) {
                 console.log(`El producto con código ${code} ya existe.`);
                 return;
             }
             ProductManager.id++
             let newProduct = { title, description, price, thumbmail, code, stock, id: ProductManager.id }
-            this.products = await this.getProducts()
             this.products.push(newProduct)
             await fs.writeFile(this.path, JSON.stringify(this.products))
         }
@@ -30,12 +30,6 @@ class ProductManager {
             console.log(`addProduct fails`)
             return true
         }
-    }
-
-
-    readProducts = async () => {
-        let respuesta = await (fs.readFile(this.path, "utf-8"))
-        return JSON.parse(respuesta)
     }
 
 
@@ -52,7 +46,7 @@ class ProductManager {
 
     getProductsById = async (id) => {
         try {
-            let respId = await this.readProducts();
+            let respId = await this.getProducts();
             if (!respId.find(product => product.id === id)) {
                 console.log("Not Found")
             } else {
@@ -73,7 +67,7 @@ class ProductManager {
             }
 
             await this.deleteProduct(id);
-            let productsBefore = await this.readProducts()
+            let productsBefore = await this.getProducts()
             let modifiedProduct = [{ id, title, description, price, thumbmail, code, stock }, ...productsBefore];
             await fs.writeFile(this.path, JSON.stringify(modifiedProduct))
         }
@@ -85,7 +79,7 @@ class ProductManager {
 
     deleteProduct = async (id) => {
         try {
-            let respDelete = await this.readProducts();
+            let respDelete = await this.getProducts();
             let filterDelete = respDelete.filter(products => products.id != id)
             await fs.writeFile(this.path, JSON.stringify(filterDelete))
             return true
@@ -134,8 +128,7 @@ const product = new ProductManager;
 
 // await product.updateProduct({
 //     title: 'Producto 1 MOFIDICADO2',
-//     description: 'Descripcion de producto 1 MODIFICADO',
-//     price: 343434
+//     price: 343434,
 //     thumbmail: 'https://www.productos.com/producto1.png',
 //     code: 'a1a1a1a1a1',
 //     stock: 30,
